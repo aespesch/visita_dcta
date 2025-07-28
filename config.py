@@ -1,5 +1,5 @@
 """
-Configuration file for the party registration system.
+Configuration file for the DCTA visitor registration system.
 This centralizes all settings that might need to be changed without modifying the main code.
 """
 
@@ -10,29 +10,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Event Information
-EVENT_NAME = "T90 - 35 Anos - Almoço Comemorativo"
-EVENT_DATE = "29 de novembro de 2025 13:00"
-EVENT_LOCATION = "Churrascaria Boigalê São José dos Campos"
-
-# Pricing Configuration (in Brazilian Reais)
-# These values determine how much each age group pays
-PRICING = {
-    "under_5": 0,      # Kids under 5 enter for free
-    "5_to_12": 37.50,  # Children between 5-12 pay half price
-    "above_12": 75.00  # Adults and teens pay full price
-}
-
-# PIX Payment Configuration
-# IMPORTANT: Never commit your actual PIX key to GitHub!
-# Use environment variables for production
-PIX_KEY = os.getenv("PIX_KEY", "toni@ita90.com.br")  # Your PIX key
-PIX_MERCHANT_NAME = os.getenv("PIX_MERCHANT_NAME", "Antônio Magno Lima Espeschit")
-PIX_CITY = os.getenv("PIX_CITY", "São José dos Campos-SP")
-
-# Email Configuration (for sending confirmations)
-# These should also come from environment variables in production
-EMAIL_SENDER = os.getenv("EMAIL_SENDER", "toni@ita90.com.br")
-SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", "")  # Keep empty if not using email
+EVENT_NAME = "Visita ao DCTA - Turma ITA 90"
+EVENT_DATE = "29 de novembro de 2025 às 09:00"
+EVENT_LOCATION = "DCTA (antigo CTA), São José dos Campos - SP"
 
 # Data Source Configuration
 # Path to the CSV file containing participant information
@@ -41,43 +21,39 @@ PARTICIPANTS_FILE = "participants.csv"
 # User Interface Messages
 # Customize these messages to match your event's tone
 MESSAGES = {
-    "welcome": f"Bem-vindo ao sistema de confirmação para {EVENT_NAME}!",
-    "not_found": "Nome não encontrado na lista. Verifique se digitou corretamente ou entre em contato com a organização.",
-    "thank_you_not_attending": "Obrigado por nos avisar! Sentiremos sua falta.",
-    "payment_instructions": """
-    **Instruções para pagamento:**
-    1. Abra o aplicativo do seu banco
-    2. Acesse a opção PIX
-    3. Escaneie o QR Code acima
-    4. Confirme o pagamento
+    "welcome": f"Bem-vindo ao sistema de registro para {EVENT_NAME}!",
+    "not_found": "Nome não encontrado na lista de convidados. Verifique se digitou corretamente ou entre em contato com a organização.",
+    "registration_success": """
+    **Registro realizado com sucesso!**
     
-    IMPORTANTE: Não precisa mandar o comprovante via whatsapp!
+    **Importante:**
+    - Chegue com 30 minutos de antecedência
+    - Todos os visitantes devem portar documento de identidade com foto
+    - Menores de idade devem estar acompanhados dos responsáveis
     """,
-    "confirmation_email_subject": f"Confirmação de presença - {EVENT_NAME}"
+    "invalid_rg": "RG inválido. Por favor, digite apenas números."
 }
 
 # Guest Limits
-# Maximum number of guests allowed per age category
-MAX_GUESTS_PER_CATEGORY = 100
+# Maximum number of companions allowed when not specified in the CSV
+MAX_COMPANIONS = 10
 
 # Application Settings
 # Page configuration for Streamlit
 PAGE_CONFIG = {
-    "page_title": f"Confirmação - {EVENT_NAME}",
-    "page_icon": "🎉",
+    "page_title": f"Registro de Visitantes - {EVENT_NAME}",
+    "page_icon": "🏛️",
     "layout": "centered",
     "initial_sidebar_state": "collapsed"
 }
 
 # Admin Configuration
 # Password for accessing the admin dashboard
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")  # Change this!
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")  # Change this in production!
 
-# Feature Flags
-# Enable or disable features during development
-FEATURES = {
-    "send_emails": False,  # Set to True when email is configured
-    "validate_payment": False,  # Set to True when payment API is integrated
-    "admin_dashboard": True,  # Enable admin view
-    "export_data": True  # Allow data export to CSV
-}
+# Security Notice
+SECURITY_NOTICE = """
+**Aviso de Segurança:**
+Os dados coletados serão utilizados exclusivamente para autorização de acesso ao DCTA.
+Ao prosseguir, você autoriza o compartilhamento destas informações com a segurança do DCTA.
+"""
