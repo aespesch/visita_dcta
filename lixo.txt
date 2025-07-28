@@ -1,0 +1,15 @@
+.ENV
+.gitignore
+.python-version
+app.py
+config.py
+dicas.txt
+env.bat
+LICENSE
+lixo.txt
+participants.csv
+README.md
+requirements.txt
+runtime.txt
+run_visita_cta.bat
+sync.bat
