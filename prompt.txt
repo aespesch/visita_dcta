@@ -1,0 +1,14 @@
+Os arquivos app.py e config.py, em anexo, são utilizados em um aplicativo em https://turma90.streamlit.app/ .
+
+Estes scripts são usados para que participantes de um almoço gerem um QR Code e paguem o valor deste almoço.
+
+Agora vamos adaptar este código para que os participantes informem nome/rg de si mesmos e de eventuais acompanhantes para uma visita a uma base militar.
+
+Os novos scripts, que você vai gerar conforme instruções abaixo, vão ficar em https://turma90_dcta.streamlit.app/ 
+
+Os scripts devem ser adaptados para:
+1. Solicitar que o convidado digite seu nome e clique em verificar.
+2. Se for encontrado o nome do convidado em participants.csv , obter a quantidade de participantes no campo participants. Se não for encontrado o nome do convidado, erro. Se o valor de participants for 0, perguntar a quantidade de acompanhantes que irão ao evento e, neste caso, adotar como valor de participants o valor informado pelo usuário somado de 1.
+3. O primeiro participante é o próprio usuário. Para cada participante, você deve coletar o NOME e o RG. Para o primeiro, você já sabe o nome, então basta pegar o RG.
+4. Os dados devem ser armazenados em RESULTADOS.CSV.
+
